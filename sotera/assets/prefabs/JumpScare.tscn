@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://crgbqad7i7i2t"]
 
 [ext_resource type="Script" uid="uid://cx5tpa5lgwidh" path="res://src/scripts/jumpscare/JumpScare.gd" id="1_050a5"]
-[ext_resource type="Texture2D" uid="uid://0665qrli4jg7" path="res://assets/raw/2d/vector/jumpscare1.png" id="2_f5mll"]
+[ext_resource type="Texture2D" uid="uid://0665qrli4jg7" path="res://assets/raw/2d/vector/jumpscare/jumpscare1.png" id="2_f5mll"]
 [ext_resource type="AudioStream" uid="uid://cpyw8qldtloig" path="res://assets/audio/voice/dialogue/voices calling player.wav" id="3_7i03j"]
 
 [sub_resource type="Curve" id="Curve_f5mll"]
