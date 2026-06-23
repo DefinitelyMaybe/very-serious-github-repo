@@ -44,6 +44,7 @@ offset_left = -561.0
 offset_top = -191.0
 offset_right = 1243.4445
 offset_bottom = 824.0
+mouse_filter = 2
 texture = ExtResource("3_sphea")
 
 [node name="CRT" parent="." unique_id=719073563 instance=ExtResource("3_0ntwq")]
