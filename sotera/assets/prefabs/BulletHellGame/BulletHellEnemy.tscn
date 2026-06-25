@@ -185,7 +185,7 @@ position = Vector2(-2.3841858e-07, 0)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_avvpw")
 animation = &"idle_right"
-frame_progress = 0.18393058
+frame_progress = 0.7849872
 
 [node name="WalkBox" type="CollisionShape2D" parent="." unique_id=976067122]
 position = Vector2(0, 26)
