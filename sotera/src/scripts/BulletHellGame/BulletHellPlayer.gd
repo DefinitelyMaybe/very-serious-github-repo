@@ -8,7 +8,6 @@ class_name BulletHellCharacter
 
 @onready var hp = maxHp
 @onready var animations: AnimatedSprite2D = $Animations
-@onready var footsteps: AudioStreamPlayer2D = $Footsteps
 
 var currentiFrames: int = 0
 var mousePos: Vector2
@@ -104,6 +103,5 @@ func takeDamage(damage:int) -> void:
 		
 	if hp <= 0:
 		#Minigame over
-		print("Player Dead")
-		takeDamage(0) #crashing the game on death for funsies	
+		Events.change_level("res://assets/scenes/FortuneWheelScene.tscn")
 	

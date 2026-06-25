@@ -118,7 +118,6 @@ func _on_attack_hitbox_body_exited(body: Node2D) -> void:
 			state = BHENEMYSTATE.MOVING
 		
 
-
 func _on_hurtbox_area_entered(area: Area2D) -> void:
 	if area.get_parent():
 		var parent = area.get_parent()
