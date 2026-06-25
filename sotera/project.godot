@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 
 Events="*uid://dpv8uw8ip271l"
 Globals="*uid://c6sy5l5si8076"
+SoundPool="*uid://bxeo46glqarws"
+MusicPlayer="*uid://b2v4rfaa7gbbp"
 
 [display]
 
