@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bkkqyxmuf1f88" path="res://assets/prefabs/ui/PointerTextArrow.tscn" id="5_xe05w"]
 [ext_resource type="Script" uid="uid://6gbrgksowim7" path="res://src/scripts/main/MenuLabelMotionControl.gd" id="6_eg6ox"]
 [ext_resource type="Script" uid="uid://cf5vvcme34lkq" path="res://src/scripts/main/MainMenuPlayBtn.gd" id="7_eg6ox"]
-[ext_resource type="Script" uid="uid://d3uo8k80qvft6" path="res://src/scripts/main/MainMenuCreditsBtn.gd" id="7_genjg"]
+[ext_resource type="Script" uid="uid://d3uo8k80qvft6" path="res://src/scripts/main/MainMenuCredits.gd" id="7_genjg"]
 [ext_resource type="Script" uid="uid://dnwagqmfpnviu" path="res://src/systems/parallax/ParallaxSystem.gd" id="7_ghxc0"]
 
 [node name="Root" type="Control" unique_id=868332111]
