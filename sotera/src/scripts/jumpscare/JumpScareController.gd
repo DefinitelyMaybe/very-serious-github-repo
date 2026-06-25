@@ -6,6 +6,8 @@ const TRACK_ID: int = 0
 
 enum JumpscareControllerState{ HIDDEN, JUMP }
 
+signal jumpscare_finished
+
 @export var range_scream_db: Vector2 = Vector2(-10.0, 20.0)
 @onready var voice: AudioStreamPlayer2D = $Voice # jumpscare has only 1 voice output
 @onready var anime_state: SpineAnimationState = get_animation_state()
@@ -38,3 +40,4 @@ func _init_voice() -> void:
 func stop_jumpscare() -> void:
 	visible = false
 	_state = JumpscareControllerState.HIDDEN
+	jumpscare_finished.emit()

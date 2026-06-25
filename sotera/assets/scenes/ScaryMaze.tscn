@@ -9,7 +9,10 @@ distance = 1.9999924
 
 [node name="ScaryMaze" type="Node2D" unique_id=1149450057]
 
-[node name="ScaryMazeLv1" parent="." unique_id=631495778 instance=ExtResource("1_owkrm")]
+[node name="ScaryMazeLv1" parent="." unique_id=631495778 node_paths=PackedStringArray("point_light", "darkness", "player") instance=ExtResource("1_owkrm")]
+point_light = NodePath("../Player/PointLight2D")
+darkness = NodePath("../CanvasModulate")
+player = NodePath("../Player")
 
 [node name="worldboundary" type="Node2D" parent="." unique_id=638251911]
 
