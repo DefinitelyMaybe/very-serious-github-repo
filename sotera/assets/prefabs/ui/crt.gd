@@ -12,7 +12,9 @@ func _ready() -> void:
 	
 	Events.level_change_start.connect(fade_out)
 	Events.level_change_enter.connect(fade_in)
-	
+	Events.play_loading_screen.connect(load_screen)
+	Events.stop_loading_screen.connect(stop_load_screen)
+
 func _process(delta: float) -> void:
 	crt_motion.update(delta)
 
@@ -29,7 +31,15 @@ func fade_in() -> void:
 	animation_player.play_backwards("fade_to_black")
 	await animation_player.animation_finished
 	print("fade in done")
-	
+
+func load_screen() -> void:
+	# Show black screen
+	$LoadingScreen.show()
+
+func stop_load_screen() -> void:
+	# Hides black screen
+	$LoadingScreen.hide()
+
 func adjust_to_full_screen() -> void:
 	var full_screen_size: Vector2 = get_viewport_rect().size
 	var zero: Vector2 = Vector2.ZERO
