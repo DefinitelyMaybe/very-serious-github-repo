@@ -30,7 +30,7 @@ scale = Vector2(6.0027785, 6.0027785)
 texture = ExtResource("1_cooqm")
 
 [node name="Wheel" parent="." unique_id=1465385523 node_paths=PackedStringArray("curtains", "minigame_tracker") instance=ExtResource("2_4arlo")]
-position = Vector2(950, 836)
+position = Vector2(961, 821)
 curtains = NodePath("../Curtains")
 minigame_tracker = NodePath("../MiniGameTracker")
 
