@@ -1,0 +1,14 @@
+[remap]
+
+importer="spine.skel"
+type="SpineSkeletonFileResource"
+uid="uid://jvuxiu2qk7uj"
+path="res://.godot/imported/scary.skel-654692e157c1470ae8e272258e261ecd.spskel"
+
+[deps]
+
+source_file="res://assets/animations/2d/jumpscare/scary.skel"
+dest_files=["res://.godot/imported/scary.skel-654692e157c1470ae8e272258e261ecd.spskel"]
+
+[params]
+
