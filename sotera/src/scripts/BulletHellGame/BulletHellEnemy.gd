@@ -11,7 +11,7 @@ class_name BulletHellEnemy
 @onready var animations: AnimatedSprite2D = $Animations
 @onready var hp = maxHp
 
-var player: BulletHellPlayer
+var player: Player
 var spawnPos: Vector2
 var damagingPlayer = false
 var state: BHENEMYSTATE = BHENEMYSTATE.DISABLED
@@ -34,8 +34,10 @@ func actor_setup():
 	await get_tree().physics_frame
 
 	# Now that the navigation map is no longer empty, set the movement target.
-	set_movement_target(player.position)
-
+	if player:
+		set_movement_target(player.position)
+	else: 
+		print("player_mising")
 func set_movement_target(movement_target: Vector2):
 	navAgent.target_position = movement_target
 
@@ -48,7 +50,7 @@ func _physics_process(delta: float) -> void:
 		BHENEMYSTATE.ATTACKING:
 			velocity = Vector2.ZERO
 			if damagingPlayer:
-				player.takeDamage(damage)
+				player.take_damage()
 		BHENEMYSTATE.DISABLED:
 			velocity = Vector2.ZERO
 		BHENEMYSTATE.MOVING:
@@ -88,7 +90,7 @@ func spawn(spawnPos:Vector2,player:BulletHellPlayer)->void:
 	pass
 	
 func takeDamage(damageToTake:int)->void:
-	hp-=damageToTake
+	hp -= damageToTake
 	SoundPool.play_random_shuffled_sound(SoundPool.ZOMBIE_GROWL)
 	if hp<=0:
 		destroy()

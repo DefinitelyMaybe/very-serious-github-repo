@@ -100,7 +100,6 @@ option_a = "Wealth"
 option_b = "Fame"
 option_c = "Freedom"
 option_d = "Survival"
-answer = 3
 metadata/_custom_type_script = "uid://d2qode13dvwob"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_loflm"]

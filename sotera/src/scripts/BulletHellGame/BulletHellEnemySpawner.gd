@@ -5,6 +5,7 @@ extends Node
 @export var player: BulletHellPlayer
 @export var spawnerLocations: Array[Node2D]
 @export var waves: Array[int]
+
 var currentWave: int = 0
 var enemiesSpawned: int = 0
 var enemiesKilled: int = 0

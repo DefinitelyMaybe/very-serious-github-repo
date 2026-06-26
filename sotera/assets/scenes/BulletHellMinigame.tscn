@@ -4,10 +4,9 @@
 [ext_resource type="Script" uid="uid://bxvm1qmxyc60c" path="res://src/scripts/BulletHellGame/BulletHellEnemySpawner.gd" id="2_k22da"]
 [ext_resource type="PackedScene" uid="uid://djlcsqi5rdk0t" path="res://assets/prefabs/BulletHellGame/BulletHellEnemy.tscn" id="3_1tnea"]
 [ext_resource type="PackedScene" uid="uid://qxxqamx1koeu" path="res://assets/prefabs/ui/CRT.tscn" id="4_g2uak"]
-[ext_resource type="PackedScene" uid="uid://urcx0ou3hqip" path="res://assets/prefabs/contract.tscn" id="4_i37ik"]
-[ext_resource type="PackedScene" uid="uid://bcnlbtdiicag" path="res://assets/prefabs/gui.tscn" id="4_sx2vv"]
-[ext_resource type="PackedScene" uid="uid://b830mwodbpleq" path="res://assets/prefabs/player.tscn" id="6_hgr1y"]
-[ext_resource type="Script" uid="uid://dai534ekpx5j5" path="res://src/scripts/BulletHellGame/BulletHellPlayer.gd" id="7_qr455"]
+[ext_resource type="PackedScene" uid="uid://dfac0y3pduyy7" path="res://assets/prefabs/contract.tscn" id="4_i37ik"]
+[ext_resource type="PackedScene" uid="uid://cfpfhc2bmrb7b" path="res://assets/prefabs/gui.tscn" id="4_sx2vv"]
+[ext_resource type="PackedScene" uid="uid://c1b55tknnjmpp" path="res://assets/prefabs/BulletHellGame/bullet_hell_player.tscn" id="7_qr455"]
 [ext_resource type="PackedScene" uid="uid://dkn2kpahpr8ds" path="res://assets/prefabs/BulletHellGame/BulletHellGun.tscn" id="8_qr455"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_u2d4l"]
@@ -101,9 +100,9 @@ distance = 8.898792
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4dv3d"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jk4tv"]
-radius = 21.0
-height = 90.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qr455"]
+radius = 3.375
+height = 15.0
 
 [node name="BulletHellMinigame" type="Node2D" unique_id=605887518]
 script = ExtResource("1_jk4tv")
@@ -254,7 +253,7 @@ shape = SubResource("WorldBoundaryShape2D_4dv3d")
 script = ExtResource("2_k22da")
 enemyScene = ExtResource("3_1tnea")
 contractScene = ExtResource("4_i37ik")
-player = NodePath("../Player")
+player = NodePath("../BulletHellPlayer")
 spawnerLocations = [NodePath("../LeftTent"), NodePath("../RightTent")]
 waves = Array[int]([3])
 
@@ -278,22 +277,21 @@ offset_bottom = 38.0
 
 [node name="GUI" parent="CanvasLayer" unique_id=233616670 instance=ExtResource("4_sx2vv")]
 
-[node name="Player" parent="." unique_id=1229557920 node_paths=PackedStringArray("gun") instance=ExtResource("6_hgr1y")]
-position = Vector2(954, 751)
-scale = Vector2(0.5, 0.5)
-script = ExtResource("7_qr455")
+[node name="BulletHellPlayer" parent="." unique_id=2026353861 node_paths=PackedStringArray("gun") instance=ExtResource("7_qr455")]
+position = Vector2(960, 616)
+motion_mode = 1
 gun = NodePath("BulletHellGun")
-iFrames = 60
+iFrames = 3
 
-[node name="HurtBox" type="Area2D" parent="Player" unique_id=696863015]
+[node name="HurtBox" type="Area2D" parent="BulletHellPlayer" unique_id=412102748]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HurtBox" unique_id=1191283319]
-position = Vector2(-2, -7)
-shape = SubResource("CapsuleShape2D_jk4tv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletHellPlayer/HurtBox" unique_id=1669831948]
+shape = SubResource("CapsuleShape2D_qr455")
 
-[node name="BulletHellGun" parent="Player" unique_id=554639469 instance=ExtResource("8_qr455")]
+[node name="BulletHellGun" parent="BulletHellPlayer" unique_id=554639469 instance=ExtResource("8_qr455")]
 
 [connection signal="timeout" from="EnemySpawner/SpawnCooldown" to="EnemySpawner" method="spawnEnemy"]
 [connection signal="timeout" from="EnemySpawner/WaveDelay" to="EnemySpawner" method="startWave"]
+[connection signal="body_entered" from="BulletHellPlayer/HurtBox" to="BulletHellPlayer" method="take_damage"]

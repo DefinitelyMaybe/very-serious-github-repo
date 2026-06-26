@@ -68,8 +68,7 @@ func _physics_process(delta):
 		gun.shoot(mousePos)
 	super._physics_process(delta)
 
-func takeDamage(damage:int) -> void:
+func take_damage() -> void:
 	if currentiFrames <= 0:
 		currentiFrames = iFrames
 		Events.lose_life.emit()
-		
