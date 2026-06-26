@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b4meiyl3qtq4d" path="res://assets/raw/boss_hair_anim5-ezgif.com-gif-to-sprite-converter (1).png" id="5_vkukm"]
 [ext_resource type="FontFile" uid="uid://cwbt4fgf27yh7" path="res://assets/fonts/MGPixel.otf" id="6_klscq"]
 [ext_resource type="Script" uid="uid://buoih526378b8" path="res://src/scripts/flash_componet.gd" id="7_8xf35"]
+[ext_resource type="Texture2D" uid="uid://dswaovw6ecers" path="res://assets/images/mc_boss_hand.png" id="10_u6exl"]
 
 [sub_resource type="Resource" id="Resource_k525x"]
 script = ExtResource("2_k525x")
@@ -195,7 +196,7 @@ animations = [{
 }],
 "loop": 1,
 "name": &"default",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oag77"]
@@ -353,5 +354,10 @@ metadata/_custom_type_script = "uid://buoih526378b8"
 script = ExtResource("7_8xf35")
 sprite_2d = NodePath("../PlayerAnimatedSprite")
 metadata/_custom_type_script = "uid://buoih526378b8"
+
+[node name="McBossHand" type="Sprite2D" parent="." unique_id=1473106677]
+position = Vector2(918, 883)
+scale = Vector2(6, 6)
+texture = ExtResource("10_u6exl")
 
 [editable path="Control"]
