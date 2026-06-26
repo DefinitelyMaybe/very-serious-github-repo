@@ -21,6 +21,10 @@ position = Vector2(960.2221, 540.75006)
 scale = Vector2(6.0027785, 6.0027785)
 texture = ExtResource("2_a75s3")
 
+[node name="Steven" parent="Stage" unique_id=2100930359 instance=ExtResource("2_q5g6k")]
+position = Vector2(-6.367401, 51.5178)
+scale = Vector2(0.66635805, 0.66635805)
+
 [node name="UiText" type="Control" parent="." unique_id=1375843956]
 layout_mode = 3
 anchors_preset = 0
@@ -41,8 +45,5 @@ theme_override_font_sizes/font_size = 20
 horizontal_alignment = 1
 
 [node name="Curtains" parent="." unique_id=1568423794 instance=ExtResource("6_sfoav")]
-
-[node name="Steven" parent="." unique_id=2100930359 instance=ExtResource("2_q5g6k")]
-position = Vector2(922, 850)
 
 [connection signal="speech_ended" from="UiText" to="." method="_on_ui_text_speech_ended"]
