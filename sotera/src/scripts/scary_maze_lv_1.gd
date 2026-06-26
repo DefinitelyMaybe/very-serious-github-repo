@@ -12,12 +12,22 @@ extends Node2D
 @onready var player_starting_pos: Marker2D = $PlayerStartingPos
 @onready var timer: Timer = $Timer
 @onready var static_screen: TextureRect = $Static
+@onready var ambiance_sound_timer: Timer = $AmbianceSoundTimer
 
 var jumpscare_active: bool = false
 
 func _ready() -> void:
 	MusicPlayer.play_track(MusicPlayer.SCARY, 0.5, 0.0, -3.0)
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	_queue_next_ambiance()
+
+func _queue_next_ambiance() -> void:
+	ambiance_sound_timer.wait_time = randf_range(6.0, 16.0)
+	ambiance_sound_timer.start()
+
+func _on_ambiance_sound_timer_timeout() -> void:
+	SoundPool.play_random_sound(SoundPool.SPOOKY_AMBIANCE_ONESHOT)
+	_queue_next_ambiance()
 
 func _exit_tree() -> void:
 	MusicPlayer.stop_track(2.0)
@@ -25,7 +35,8 @@ func _exit_tree() -> void:
 func _on_exit_area_body_entered(body: CharacterBody2D) -> void:
 	if jumpscare_active:
 		return
-		
+	
+	ambiance_sound_timer.stop()
 	jumpscare_active = true
 	
 	# Disable player and exit area
@@ -38,6 +49,7 @@ func _on_exit_area_body_entered(body: CharacterBody2D) -> void:
 	darkness.visible = false
 	
 	jumpscare.start_jumpscare()
+	SoundPool.play_random_sound(SoundPool.JUMPSCARE_V2)
 	
 	# Wait till jumpscare is done
 	await jumpscare.jumpscare_finished
@@ -60,6 +72,8 @@ func _on_exit_area_body_entered(body: CharacterBody2D) -> void:
 	darkness.show()
 	static_anim.play("RESET")
 	timer.start()
+	
+	_queue_next_ambiance()
 
 func _on_timer_timeout() -> void:
 	jumpscare_active = false

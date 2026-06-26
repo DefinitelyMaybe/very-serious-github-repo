@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://1r4ydw3tyo5s" path="res://assets/map/scary_maze/scary_maze_lv_1.tscn" id="1_owkrm"]
 [ext_resource type="Texture2D" uid="uid://bqykonrifpc3x" path="res://assets/raw/maze/Player_Light.png" id="3_77in4"]
-[ext_resource type="PackedScene" uid="uid://cfpfhc2bmrb7b" path="res://assets/prefabs/gui.tscn" id="4_3wkap"]
-[ext_resource type="PackedScene" uid="uid://b68b0uefrtdd6" path="res://assets/prefabs/player.tscn" id="5_3wkap"]
+[ext_resource type="PackedScene" uid="uid://bcnlbtdiicag" path="res://assets/prefabs/gui.tscn" id="4_3wkap"]
+[ext_resource type="PackedScene" uid="uid://b830mwodbpleq" path="res://assets/prefabs/player.tscn" id="5_3wkap"]
 [ext_resource type="PackedScene" uid="uid://qxxqamx1koeu" path="res://assets/prefabs/ui/CRT.tscn" id="5_hbjed"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_owkrm"]
@@ -14,6 +14,8 @@ distance = 1.9999924
 [node name="ScaryMazeLv1" parent="." unique_id=631495778 node_paths=PackedStringArray("point_light", "darkness") instance=ExtResource("1_owkrm")]
 point_light = NodePath("../Player2/PointLight2D")
 darkness = NodePath("../CanvasModulate")
+
+[node name="AmbianceSoundTimer" type="Timer" parent="ScaryMazeLv1" unique_id=2068793606]
 
 [node name="worldboundary" type="Node2D" parent="." unique_id=638251911]
 
@@ -63,3 +65,5 @@ texture = ExtResource("3_77in4")
 texture_scale = 1.2
 
 [node name="Camera2D" type="Camera2D" parent="Player2" unique_id=1338842814]
+
+[connection signal="timeout" from="ScaryMazeLv1/AmbianceSoundTimer" to="ScaryMazeLv1" method="_on_ambiance_sound_timer_timeout"]
