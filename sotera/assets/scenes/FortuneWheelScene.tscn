@@ -34,9 +34,10 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_t6tgv"]
 distance = 3.9999962
 
-[node name="Root" type="Node" unique_id=1266003346 node_paths=PackedStringArray("curtains")]
+[node name="Root" type="Node" unique_id=1266003346 node_paths=PackedStringArray("curtains", "dialogue")]
 script = ExtResource("1_d7hmc")
 curtains = NodePath("Group Curtains/Curtains")
+dialogue = NodePath("CanvasLayer/Dialogue")
 
 [node name="World" type="Node" parent="." unique_id=1699964275]
 
@@ -110,9 +111,11 @@ metadata/_edit_lock_ = true
 
 [node name="FG" type="Node" parent="World" unique_id=1553769669]
 
-[node name="WheelSpin" parent="World/FG" unique_id=1465385523 instance=ExtResource("16_556sf")]
+[node name="Wheel" parent="World/FG" unique_id=1465385523 node_paths=PackedStringArray("curtains", "minigame_tracker") instance=ExtResource("16_556sf")]
 position = Vector2(903, 723)
 scale = Vector2(0.8, 0.8)
+curtains = NodePath("../../../Group Curtains/Curtains")
+minigame_tracker = NodePath("../../../MiniGameTracker")
 
 [node name="worldboundary" type="Node2D" parent="World/FG" unique_id=1162189176]
 metadata/_edit_lock_ = true
@@ -196,6 +199,11 @@ polygon = PackedVector2Array(58, -68, 65, 1189, -84, 1182, -98, -72)
 [node name="PauseBox" parent="CanvasLayer" unique_id=617542604 node_paths=PackedStringArray("curtains") instance=ExtResource("10_6vnka")]
 curtains = NodePath("../../Group Curtains/Curtains")
 
+[node name="Dialogue" parent="CanvasLayer" unique_id=998366939 instance=ExtResource("17_6vnka")]
+anchors_preset = 12
+anchor_top = 1.0
+grow_vertical = 0
+
 [node name="CRT" parent="CanvasLayer" unique_id=719073563 instance=ExtResource("6_4arlo")]
 metadata/_edit_lock_ = true
 
@@ -210,17 +218,10 @@ game_icons = {
 "scary": ExtResource("16_83ar3")
 }
 
-[node name="DialogueText" parent="." unique_id=998366939 instance=ExtResource("17_6vnka")]
-offset_left = 320.0
-offset_top = 351.0
-offset_right = -1429.3333
-offset_bottom = -633.0
-metadata/_edit_lock_ = true
-
 [node name="Systems" type="Node" parent="." unique_id=323798835]
 
 [node name="Parallax" type="Node" parent="Systems" unique_id=1586500093 node_paths=PackedStringArray("layers")]
 script = ExtResource("15_1cyg4")
 layers = [NodePath("../../Group Curtains/Curtains")]
 
-[connection signal="speech_ended" from="DialogueText" to="World/FG/Lever" method="_on_dialogue_text_speech_ended"]
+[connection signal="speech_ended" from="CanvasLayer/Dialogue" to="World/FG/Lever" method="_on_dialogue_text_speech_ended"]

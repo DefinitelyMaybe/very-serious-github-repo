@@ -1,4 +1,5 @@
 extends Control
+class_name Dialogue
 
 signal speech_ended
 enum UiTextState { SHOWTEXT, NO_TEXT }
