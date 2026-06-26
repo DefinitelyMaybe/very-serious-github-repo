@@ -16,10 +16,10 @@ text = "Georg Hastene"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Discord Name" type="Label" parent="." unique_id=1129176529]
+[node name="Itch" type="Label" parent="." unique_id=1129176529]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "georgHastene"
+text = "Itch: EXAMPLE_7821"
 horizontal_alignment = 1
 vertical_alignment = 1
 
