@@ -20,17 +20,32 @@ var max_time: float = 5.0;
 
 var speed_multiplier: float = 0.0;
 
-var items: Array[String] = [
-	"maze", "bullet", "scary", "quiz", "story"
-]
-var itemSceneMap = {
-	"maze": "res://assets/scenes/StandardMaze.tscn",
-	"bullet": "res://assets/scenes/BulletHellMinigame.tscn",
-	"scary": "res://assets/scenes/ScaryMaze.tscn"
+enum MiniGame { 
+	MAZE = 0,
+	BULLET = 1,
+	SCARY = 2,
+	QUIZ = 3,
+	# STORY = 4 not yet implemented
+}
+
+var mini_game_name_map: Dictionary[MiniGame, String] = {
+	MiniGame.MAZE: "maze",
+	MiniGame.BULLET: "bullet",
+	MiniGame.SCARY: "scary",
+	MiniGame.QUIZ: "quiz",
+	# MiniGame.STORY: "story" not yet implemented
+}
+
+var mini_game_map: Dictionary[MiniGame, String] = {
+	MiniGame.MAZE: "res://assets/scenes/StandardMaze.tscn",
+	MiniGame.BULLET: "res://assets/scenes/BulletHellMinigame.tscn",
+	MiniGame.SCARY: "res://assets/scenes/ScaryMaze.tscn",
+	MiniGame.QUIZ: "res://assets/scenes/FinalBoss.tscn",
+	# MiniGame.STORY: "res://assets/scenes/ScaryMaze.tscn" not yet implemented
 }
 
 var elapsed_spin_time: float = 0.0;
-var single_value_height_in_texture: float = 1.0 / items.size();
+var single_value_height_in_texture: float = 1.0 / mini_game_map.size();
 var value_idx: int = 2;
 
 @export var curtains: CurtainSystem
@@ -68,11 +83,12 @@ func update_spin(delta: float) -> void:
 			if(effect2.state != effect2.WheelPEState.SPEED_DOWN_TRANSITION): effect2.stop_pe_impact()
 			
 	else: _stop()
-
-	value_idx = (int((offset + 0.1) / single_value_height_in_texture) + floori(items.size() / 2)) % items.size();
+	
+	var n: int = mini_game_map.size()
+	value_idx = (int((offset + 0.1) / single_value_height_in_texture) + floori(n / 2)) % n;
 
 	wheel_material.set_shader_parameter("offset", offset);
-	wheel_value.text = str(items[value_idx])
+	wheel_value.text = mini_game_name_map[value_idx]
 
 func start_spinning() -> void:
 	if _state != WheelState.IDLE: return # IDLE -> SPINNING
@@ -95,14 +111,13 @@ func check_if_curtains_are_closed() -> void:
 	if !curtains.closed(): return
 	
 	SoundPool.play_sound(SoundPool.MINIGAME_SELECTED)
-	Events.change_level(itemSceneMap[str(items[value_idx])])
+	Events.change_level(mini_game_map[value_idx])
 	
 	_state = WheelState.IDLE
 	
 func _stop() -> void:
-	var winning_game = items[value_idx]
-	
 	if minigame_tracker:
+		var winning_game: String = mini_game_name_map[value_idx]
 		minigame_tracker.add_minigame(winning_game)
 		
 	_start_closing_curtains()	
