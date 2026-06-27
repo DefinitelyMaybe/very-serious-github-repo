@@ -78,7 +78,7 @@ func trigger_jumpscare():
 	await static_anim.animation_finished
 	
 	# Damage
-	Globals.take_damage()
+	Events.lose_life.emit()
 	
 	# Reset player state and level
 	player.visible = true
