@@ -3,6 +3,7 @@ extends StaticBody2D
 @export var outline_thickness := 2.2
 
 @onready var label: Label = $"Control/Label"
+@onready var label2: Label = $"Control/Label2"
 @onready var lever_sprite_animation: AnimatedSprite2D = $"AnimatedLever"
 
 signal lever_pulled;
@@ -13,12 +14,14 @@ var _pullable: bool = true # disabled at start because text dialogue
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if _pullable:
 		label.show()
+		label2.show()
 	player_in_area = true
 	var tween = create_tween()
 	tween.tween_property(lever_sprite_animation.material, "shader_parameter/thickness", outline_thickness, .15)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	label.hide()
+	label2.hide()
 	player_in_area = false
 	var tween = create_tween()
 	tween.tween_property(lever_sprite_animation.material, "shader_parameter/thickness", 0, .15)
