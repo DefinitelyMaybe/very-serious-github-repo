@@ -205,9 +205,8 @@ curtains = NodePath("../../Group Curtains/Curtains")
 dialogue = NodePath("../Dialogue")
 
 [node name="Dialogue" parent="CanvasLayer" unique_id=998366939 instance=ExtResource("17_6vnka")]
-anchors_preset = 12
-anchor_top = 1.0
-grow_vertical = 0
+offset_top = -90.0
+offset_bottom = -90.0
 
 [node name="CRT" parent="CanvasLayer" unique_id=719073563 instance=ExtResource("6_4arlo")]
 metadata/_edit_lock_ = true

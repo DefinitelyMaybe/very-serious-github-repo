@@ -10,8 +10,8 @@ var state: UiTextState = UiTextState.NO_TEXT
 var current_dialogue_lines: Array[String] = []
 var current_line_idx: int = 0
 var timer: float = 0.0
-var is_typing:bool = false
-var typing_speed:float = 0.05
+var is_typing: bool = false
+var typing_speed: float = 0.05
 
 # cache text in progress to be shown
 # cached because there is option to skip/auto complete sentence by clicking on button
@@ -71,8 +71,8 @@ func _show_line(line: String) -> void:
 	is_typing = false
 
 func _append_line_character(c) -> void:
-		label.text = label.text + c
-		SoundPool.play_random_shuffled_sound(SoundPool.DIALOGUE_NOISES_STEVE)
+	label.text = label.text + c
+	SoundPool.play_random_shuffled_sound(SoundPool.DIALOGUE_NOISES_STEVE)
 		
 func _divide_into_setence_chunks(v:String, max_characters):
 	v = v.replace('"',"")
@@ -163,4 +163,8 @@ func start_next_dialog() -> void:
 	elif Globals.Total_contracts == 1:
 		# plays after first completed first mini-game
 		pass
+		
+	# dirty fix
+	if Globals.Total_contracts != 0:
+		on_stop_dialogue()
 	#elif Globals.Total_contracts == 2:
